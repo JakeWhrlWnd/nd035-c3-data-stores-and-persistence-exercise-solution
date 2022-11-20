@@ -3,12 +3,10 @@ package com.udacity.jdnd.course3.lesson1.data;
 import org.hibernate.annotations.Nationalized;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Delivery {
@@ -23,6 +21,9 @@ public class Delivery {
     private LocalDateTime deliveryTime;
     @Type(type = "yes_no")
     private boolean completed;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "delivery")
+    private List<Plant> plants;
 
     public Long getId() {
         return id;
@@ -62,5 +63,13 @@ public class Delivery {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public List<Plant> getPlants() {
+        return plants;
+    }
+
+    public void setPlants(List<Plant> plants) {
+        this.plants = plants;
     }
 }
