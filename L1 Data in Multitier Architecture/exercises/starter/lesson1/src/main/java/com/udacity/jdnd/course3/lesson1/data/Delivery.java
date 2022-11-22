@@ -22,7 +22,7 @@ public class Delivery {
     @Type(type = "yes_no")
     private boolean completed;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "delivery", cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "delivery", cascade = CascadeType.ALL)
     private List<Plant> plants;
 
     public Long getId() {
